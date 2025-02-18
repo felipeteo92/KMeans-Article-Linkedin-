@@ -13,15 +13,11 @@ Importing and Transforming
 Initially, the user must select which attributes will be analyzed and from what perspective. This will allow us to create clusters for all customers based on their characteristics. The attributes selected for the customer analysis are:
 
 Gross Income;
-Quantity;
 Product Line;
-Brand;
-Rating;
 Age.
 
-To properly prepare the dataset for applying the algorithm, the first part of the code involves several data preprocessing steps, such as replacing commas with periods, converting columns to float data types, and aggregating information by "client_id", as illustrated in Figure 2.
-
-![2](https://github.com/user-attachments/assets/ebcac7f4-ba03-4e75-84db-8d2c47800262)
+To properly prepare the dataset for applying the algorithm, the first part of the code involves a data preprocessing for aggregating information by "client_id", as illustrated in Figure 2.
+![1](https://github.com/user-attachments/assets/821487c2-7caa-491e-89a8-01ddb3cf9bf3)
 
 # StandardScaler()
 By using the StandardScaler() from the Scikit-Learn library, we are able to normalize all our data, to avoid that large scales between the values interfere with our final result. If the variables have different scales of values, we may have distortion with the final analysis.
@@ -51,12 +47,13 @@ With that script, we now have a column within our aggregated database, that show
 # Some Visuals to Shows Us a Little Bit About the Data
 We can use some visuals that can tells us a little bit about the data. For example: if we want to check in which intervals of gross income for the business each cluster of clients is, use a BOXPLOT:
 
-![image](https://github.com/user-attachments/assets/a6c62ce0-3e28-452e-97e0-3677b978ec0c)
+![2](https://github.com/user-attachments/assets/e4f0ef8c-33f3-4702-9f6f-c6078330c659)
 
 Or, maybe we wanna check in a 3D visual, the how our three clusters are divided within Gross Income, Product Line and Age, use a Scatter Graph (3D):
 
 ![8](https://github.com/user-attachments/assets/4ffc412b-039c-4810-a10d-34a8306f57ca)
-![9](https://github.com/user-attachments/assets/e5e6333d-9dd6-4bea-a4db-9ce9a309d45b)
+![3](https://github.com/user-attachments/assets/ea3d054c-5d56-45de-831b-59ae70c2776a)
+
 
 # Some Insights That Are Possible Now
 The analysis focuses on identifying customer profiles, such as Premium Buyers (high spenders), Economic Buyers (low spenders), Diverse Shoppers (broad product variety), and Satisfied Customers (high ratings). These profiles enable tailored strategies and insights into purchasing preferences, including popular product categories, brands, and demographic patterns.
