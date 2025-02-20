@@ -8,51 +8,61 @@ To conduct this experiment, I used a dataset imported from Kaggle, which I adapt
 
 ![1736972732269](https://github.com/user-attachments/assets/e290df62-d904-4f0a-b61b-b4edb4731ee2)
 # Scripting KMeans with Python
-Importing and Transforming
 Initially, the user must select which attributes will be analyzed and from what perspective. This will allow us to create clusters for all customers based on their characteristics. The attributes selected for the customer analysis are:
 
 Gross Income;
 Product Line;
+Quantity;
 Age.
 
+I chose these features to evaluate things like: customer segmentation, product performance by age and quantity, profitability vs quantity purchased, age-based product line preferences and behavorial clustering.
 To properly prepare the dataset for applying the algorithm, the first part of the code involves a data preprocessing for aggregating information by "client_id", as illustrated in Figure 2.
-![1](https://github.com/user-attachments/assets/821487c2-7caa-491e-89a8-01ddb3cf9bf3)
 
-# StandardScaler()
-By using the StandardScaler() from the Scikit-Learn library, we are able to normalize all our data, to avoid that large scales between the values interfere with our final result. If the variables have different scales of values, we may have distortion with the final analysis.
+![image](https://github.com/user-attachments/assets/1911b953-4ec8-4b25-8666-4c94191e6c68)
 
-![3](https://github.com/user-attachments/assets/f9d89734-8a08-495c-8f0c-2f0295d8a184)
 
-It is important to say that we only need to apply that for the attributes that we initialy choosed. It is not necessary to apply that for the "client_id" column. That's why we have to filter the columns with the statment "iloc[ : , 1: ]", which select all the rows and all the columns, except the first one.
+StandardScaler and One Hot Encoder
+This code prepares the data for KMeans clustering by selecting features: gross_income, quantity, age, and product_line. It separates numerical features for standardization using StandardScaler, which scales data to have a mean of 0 and standard deviation of 1. Categorical features, like product_line, are encoded using OneHotEncoder. ColumnTransformer applies these transformations in a single pipeline, ensuring the dataset is ready for clustering.
+We use StandardScaler and OneHotEncoder to prepare data for KMeans because the algorithm is sensitive to differences in scale and data types:
+
+StandardScaler:
+1 - Means uses Euclidean distance to measure similarity between data points.
+2 - Features with larger scales (e.g., gross_income) would dominate those with smaller scales (e.g., age).
+3 - StandardScaler standardizes numerical features by subtracting the mean and dividing by the standard deviation, ensuring all features contribute equally.
+
+OneHotEncoder:
+
+1 - KMeans works only with numerical data, so categorical features like product_line must be encoded as numbers.
+2 - OneHotEncoder creates binary columns for each category, preventing the algorithm from incorrectly interpreting categories as numerical values.
+3 - Dropping the first category avoids multicollinearity, improving clustering performance.
+
+![image](https://github.com/user-attachments/assets/02bb7e60-cf26-4358-aaa2-8e6dbd0b663a)
 
 # Selecting the Number of Clusters
-Another important step for the algorithm to work correctly, is selecting the right number of clusters for the analysis. We don't want to overfit it. So, the code in the Figure 4 shows us how we can do it.
+Another important step for the algorithm to work correctly, is selecting the right number of clusters for the analysis. We don't want to overfit it. So, the code in the Figure 4 shows us how we can do it, by applying the Elbow Method.
 
-![4](https://github.com/user-attachments/assets/4198b9d4-ca53-431a-bac3-0694c816df23)
+![image](https://github.com/user-attachments/assets/9aed5772-0022-42c0-867a-fb9128f7012d)
 
-Basically, the code will run the loop for 1 to 11 clusters, and by plotting the scatter graph, we can see how many clusters are necessary. The final result will be this one from the Figure 5:
+Basically, the code will run the loop for 1 to 10 clusters, and by plotting the line graph, we can see how many clusters are necessary. The number of clusters selected will be the same as where the graph line stops declining, looking at X. We will then choose 04 clusters.
 
-![5](https://github.com/user-attachments/assets/e4f4d100-172a-42c2-8413-bff4a9066646)
-
-What we need to see here, is decline in the graph. It is quite clear that after 3 clusters, the decline is almost the same. That's the spot we have to look at. Whenever the live gives is a continuos decline, it is when the model would overfit. So... we choose 3 clusters !!!
+![image](https://github.com/user-attachments/assets/32ebb84c-3892-43f8-b6be-93bb4418268e)
 
 # Finally, Applying the KMeans !!
 Now that we did all the steps do fit the database to a adequate model to apply the algorithm, we can have some action ! The code is very simple, as shown in the Figure 6:
 
-![6](https://github.com/user-attachments/assets/a3407d76-b8b1-43d1-afb8-0a6826fcf0f2)
+![image](https://github.com/user-attachments/assets/33052436-3594-4f8b-a09a-0be91d8e6a59)
 
-With that script, we now have a column within our aggregated database, that shows us which cluster each client is in. And from that, the possibilities are almost infinite (just kidding, but we have quite a few possibilities!!).
+With that script, we now have a column showing us which clusters each client belongs. And from that, the possibilities are almost infinite (just kidding, but we have quite a few !!!!).
 
 # Some Visuals to Shows Us a Little Bit About the Data
 We can use some visuals that can tells us a little bit about the data. For example: if we want to check in which intervals of gross income for the business each cluster of clients is, use a BOXPLOT:
 
-![2](https://github.com/user-attachments/assets/e4f0ef8c-33f3-4702-9f6f-c6078330c659)
+![image](https://github.com/user-attachments/assets/a990ae7e-804a-46aa-946c-22c56d8afcd8)
 
-Or, maybe we wanna check in a 3D visual, the how our three clusters are divided within Gross Income, Product Line and Age, use a Scatter Graph (3D):
+Or, maybe we wanna check in a scatter visual, how our four clusters are divided within age and gross income, to check how our clients are distributed in these features.
 
-![8](https://github.com/user-attachments/assets/4ffc412b-039c-4810-a10d-34a8306f57ca)
-![3](https://github.com/user-attachments/assets/ea3d054c-5d56-45de-831b-59ae70c2776a)
-
+![image](https://github.com/user-attachments/assets/e7af0029-9312-465b-9841-7dad962eb2bc)
+![image](https://github.com/user-attachments/assets/bc6b0641-9fc6-4b48-a5ab-247a252efd35)
 
 # Some Insights That Are Possible Now
 The analysis focuses on identifying customer profiles, such as Premium Buyers (high spenders), Economic Buyers (low spenders), Diverse Shoppers (broad product variety), and Satisfied Customers (high ratings). These profiles enable tailored strategies and insights into purchasing preferences, including popular product categories, brands, and demographic patterns.
