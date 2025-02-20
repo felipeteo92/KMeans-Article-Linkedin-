@@ -28,13 +28,17 @@ We use StandardScaler and OneHotEncoder to prepare data for KMeans because the a
 StandardScaler:
 
 1 - Means uses Euclidean distance to measure similarity between data points.
+
 2 - Features with larger scales (e.g., gross_income) would dominate those with smaller scales (e.g., age).
+
 3 - StandardScaler standardizes numerical features by subtracting the mean and dividing by the standard deviation, ensuring all features contribute equally.
 
 OneHotEncoder:
 
 1 - KMeans works only with numerical data, so categorical features like product_line must be encoded as numbers.
+
 2 - OneHotEncoder creates binary columns for each category, preventing the algorithm from incorrectly interpreting categories as numerical values.
+
 3 - Dropping the first category avoids multicollinearity, improving clustering performance.
 
 ![image](https://github.com/user-attachments/assets/02bb7e60-cf26-4358-aaa2-8e6dbd0b663a)
