@@ -26,6 +26,7 @@ This code prepares the data for KMeans clustering by selecting features: gross_i
 We use StandardScaler and OneHotEncoder to prepare data for KMeans because the algorithm is sensitive to differences in scale and data types:
 
 StandardScaler:
+
 1 - Means uses Euclidean distance to measure similarity between data points.
 2 - Features with larger scales (e.g., gross_income) would dominate those with smaller scales (e.g., age).
 3 - StandardScaler standardizes numerical features by subtracting the mean and dividing by the standard deviation, ensuring all features contribute equally.
