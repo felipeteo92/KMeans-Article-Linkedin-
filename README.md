@@ -4,8 +4,7 @@ Across my LinkedIn feed, topics like Data Analysis, Data Science, and Data Engin
 
 This article aims not only to demonstrate how to implement the algorithm but also to detail how we can apply it to a situation that closely simulates a real-world business scenario.
 
-Dataset
-To conduct this experiment, I used a dataset imported from Kaggle, which I adapted to better suit the analysis (the modifications made will be detailed in another article). The dataset simulates a business scenario, containing information about customers, sold products, and the sales themselves. It represents a combination of a fact table (sales) with dimension tables (products and customers), as illustrated in Figure 1.
+To conduct this experiment, I used a dataset imported from Kaggle, which I adapted to better suit the analysis. The dataset simulates a business scenario, containing information about customers, sold products and the sales. It represents a combination of a fact table (sales) with dimension tables (products and customers), as illustrated in Figure 1.
 
 ![1736972732269](https://github.com/user-attachments/assets/e290df62-d904-4f0a-b61b-b4edb4731ee2)
 # Scripting KMeans with Python
